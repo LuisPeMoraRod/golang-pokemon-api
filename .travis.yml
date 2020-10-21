@@ -3,7 +3,10 @@ addons:
     organization: "luispemorarod"
     token:
       secure: "**************************" # encrypted value of your token
+      
+language: go
 
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - sonar-scanner
+  #- sonar-scanner
+  - env GO111MODULE=on go build
