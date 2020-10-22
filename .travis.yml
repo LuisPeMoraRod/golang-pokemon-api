@@ -11,4 +11,5 @@ addons:
 language: go
 
 script:
-  - env GO111MODULE=on go build
+  - sonar-scanner
+  #- env GO111MODULE=on go build
