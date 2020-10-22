@@ -8,8 +8,7 @@ deploy:
   api_key:
     secure: "f/ukTtRD096iIhuM4GQHUifSJPe+YvJlsimQI2TQfQzSbtCMiwyf2PiWETwXlKXje1+FBRDv6E7lxfRWGamN9PnB5MnzOIJyHpZnfu7vGF4s/+vTx4siZ269adH1oneYuDcPKXGivdhnxqoyLRPzyPgtW1tqJTZjrho//6lk8C2NTpUsppoiKz3sCBGpHz6ZRRX0LJ1f4uHIXccFkWUrRXA2c5U2eHYtTC2DAl6EyJKtcu2uzrp9tMGxfiBnN2xmYy6ramnpJTsFB4PQ7vPfJQfIDQ5gU+uJ8TI0BqGIE8Vfq/LXeNdpaYxLO9bUHJ18AqGpQ+A8dqPAACvW+0ZAObPX0KxbX4glt4v7H70HmMN5tCkj2FsuG2hG0rVxM41SxSSfReUfgBHTPdq2JSKW3IRSMY6eHXmOxTfJeLdN3fuiwZykp3N/bLfV4u17NjDNjvN4Md0jGRCbQIpao77Jys+Bkukubkn7FyfX5XikpslKMNWYOKp0oZDMOYr6j9j/7bsTr34rDl1SVUorlJr9qK/0RHdgqmDDXR50YllzPyv471WOjyR9FYhKpco6wQrNWjlmR/yNWm80dlMdnzuMMsQR2BLA84ykqISktxVx/pNfB12jnX8U+vXdlhl08q5BfTrabpsC40B4sVSoThrLxLCStmKExepzmoAlhTc6em8="
   provider: heroku
-  app:
-    ci-cd: golang-pokemon-api
+  app: golang-pokemon-api
 env: GO111MODULE=on
 language: go
 
