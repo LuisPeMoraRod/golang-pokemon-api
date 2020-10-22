@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"pokemon-api/database"
 )
 
@@ -27,22 +28,40 @@ func getPokemon(w http.ResponseWriter, r *http.Request){
 
 func addPokemon(w http.ResponseWriter, r *http.Request){
 	reqBody, _ := ioutil.ReadAll(r.Body)
+
 	var pokemon database.Pokemon
 	json.Unmarshal(reqBody, &pokemon)
-	database.PokemonDb = append(database.PokemonDb, pokemon)
+
+	if exists(pokemon){
+		w.WriteHeader(http.StatusNotModified)
+		return
+	}
+	database.PokemonDb[pokemon.ID] = pokemon
 	json.NewEncoder(w).Encode(pokemon)
+	w.WriteHeader(http.StatusOK)
+}
+
+func exists(pokemon database.Pokemon) bool {
+	if _, ok := database.PokemonDb[pokemon.ID]; ok{
+		return true
+	}
+	return false
 }
 
 //func createPokemon()
 
 func handleRequests() {
+	port := os.Getenv("PORT")
+	if port == ""{
+		port = "80"
+	}
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.Use(commonMiddleware)
 	myRouter.HandleFunc("/pokemons", getAllPokemons).Methods("GET")
 	myRouter.HandleFunc("/pokemons/new", addPokemon).Methods("POST")
 	myRouter.HandleFunc("/pokemons/{id}", getPokemon).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(":10000", myRouter))
+	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 }
 
 
