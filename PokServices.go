@@ -10,6 +10,7 @@ import (
 
 func getAllPokemon(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(database.PokemonDb)
+	w.WriteHeader(http.StatusOK)
 }
 
 func getPokemon(w http.ResponseWriter, r *http.Request){
@@ -41,6 +42,7 @@ func addPokemon(w http.ResponseWriter, r *http.Request){
 	}
 	if newPokemon(pokemon){
 		w.WriteHeader(http.StatusOK)
+		return
 	}
 	w.WriteHeader(http.StatusNotModified)
 }
@@ -64,6 +66,9 @@ func exists(pokemon database.Pokemon) bool {
 Checks if a pokemon is registered with passed id
  */
 func idExists(id string) bool{
+	if id == "" {
+		return true
+	}
 	for _, article := range database.PokemonDb {
 		if article.ID == id {
 			return true
