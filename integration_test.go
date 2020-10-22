@@ -10,6 +10,8 @@ import (
 	"testing"
 )
 
+const ok ="200 OK"
+
 func TestGetAllPokemon(t *testing.T){
 	go handleRequests()
 	resp, err := http.Get("http://localhost:8080/pokemon")
@@ -18,10 +20,10 @@ func TestGetAllPokemon(t *testing.T){
 	}
 	defer resp.Body.Close()
 
-	if resp.Status == "200 OK"{
+	if resp.Status == ok{
 		t.Log("Request made successfully")
 	}else{
-		t.Errorf("Connection with REST service failed, status expect %v, got %v,", "200 OK", resp.Status)
+		t.Errorf("Connection with REST service failed, status expect %v, got %v,", ok, resp.Status)
 	}
 }
 
@@ -37,10 +39,10 @@ func TestNewPokemon(t *testing.T){
 	}
 	defer resp.Body.Close()
 
-	if resp.Status == "200 OK" {
+	if resp.Status == ok {
 		t.Log("Pokemon added successfully to DB")
 	}else{
-		t.Errorf("addPokemon method failed, expected %v, got %v", "200 OK", resp.Status)
+		t.Errorf("addPokemon method failed, expected %v, got %v", ok , resp.Status)
 	}
 
 }
