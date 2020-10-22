@@ -37,7 +37,6 @@ func addPokemon(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	database.PokemonDb[pokemon.ID] = pokemon
-	json.NewEncoder(w).Encode(pokemon)
 	w.WriteHeader(http.StatusOK)
 }
 
